@@ -1,0 +1,19 @@
+# Dependencias y artefactos de construccion del frontend
+frontend/node_modules/
+frontend/dist/
+
+# Binarios compilados de Go
+/dispatcher
+/replica
+/cliente
+/inyector
+/metricas
+*.exe
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# NOTA: la carpeta evidencia/ SI se versiona: contiene la evidencia
+# experimental exigida por el taller (CSV del cliente, bitacora del monitor
+# y log del inyector).

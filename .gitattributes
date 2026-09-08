@@ -1,0 +1,13 @@
+# Normalizacion de fin de linea.
+# Los scripts .sh se ejecutan dentro de contenedores Linux (por ejemplo
+# frontend/docker-entrypoint.d/40-config.sh): si Git los convirtiera a CRLF al
+# clonar en Windows, /bin/sh fallaria con "\r: not found".
+* text=auto eol=lf
+
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+
+*.pdf binary
+*.docx binary
+*.png binary
+*.jpg binary

@@ -1,0 +1,172 @@
+# Sistema RECAUDO-T: dispatcher + 3 replicas + panel React.
+#
+#   docker compose up --build          -> levanta todo el sistema
+#   docker compose --profile carga run --rm cliente     -> genera carga (E0/E1)
+#   docker compose --profile caos  run --rm inyector -objetivo recaudo-replica-b
+#
+# Todos los parametros del taller (T, t, k, m, numero de replicas, puertos,
+# tasa y duracion de la carga) se configuran en el archivo .env.
+name: recaudo-t
+
+services:
+  # ---------------------------------------------------------------- REPLICAS
+  # Cada replica es un PROCESO INDEPENDIENTE en su propio contenedor.
+  # "restart: no" es deliberado: si el inyector mata una replica debe quedarse
+  # caida hasta que se la reviva a mano (scripts/recuperar-replica).
+  replica-a:
+    build:
+      context: .
+      dockerfile: deploy/replica.Dockerfile
+    image: recaudo-t/replica:1.0
+    container_name: recaudo-replica-a
+    restart: "no"
+    environment:
+      REPLICA_ID: "A"
+      PUERTO: "8080"
+      LATENCIA_MIN_MS: "${LATENCIA_MIN_MS:-2}"
+      LATENCIA_MAX_MS: "${LATENCIA_MAX_MS:-25}"
+      SALDO_BASE: "${SALDO_BASE:-15000}"
+    ports:
+      - "${PUERTO_REPLICA_A:-8081}:8080"
+    networks: [recaudo]
+
+  replica-b:
+    build:
+      context: .
+      dockerfile: deploy/replica.Dockerfile
+    image: recaudo-t/replica:1.0
+    container_name: recaudo-replica-b
+    restart: "no"
+    environment:
+      REPLICA_ID: "B"
+      PUERTO: "8080"
+      LATENCIA_MIN_MS: "${LATENCIA_MIN_MS:-2}"
+      LATENCIA_MAX_MS: "${LATENCIA_MAX_MS:-25}"
+      SALDO_BASE: "${SALDO_BASE:-15000}"
+    ports:
+      - "${PUERTO_REPLICA_B:-8082}:8080"
+    networks: [recaudo]
+
+  replica-c:
+    build:
+      context: .
+      dockerfile: deploy/replica.Dockerfile
+    image: recaudo-t/replica:1.0
+    container_name: recaudo-replica-c
+    restart: "no"
+    environment:
+      REPLICA_ID: "C"
+      PUERTO: "8080"
+      LATENCIA_MIN_MS: "${LATENCIA_MIN_MS:-2}"
+      LATENCIA_MAX_MS: "${LATENCIA_MAX_MS:-25}"
+      SALDO_BASE: "${SALDO_BASE:-15000}"
+    ports:
+      - "${PUERTO_REPLICA_C:-8083}:8080"
+    networks: [recaudo]
+
+  # -------------------------------------------------------------- DISPATCHER
+  # Unico punto de entrada del cliente. Corre el monitor Ping/Echo (R1) y la
+  # redundancia activa (R2). Agregar una replica = editar REPLICAS en .env.
+  dispatcher:
+    build:
+      context: .
+      dockerfile: deploy/dispatcher.Dockerfile
+    image: recaudo-t/dispatcher:1.0
+    container_name: recaudo-dispatcher
+    restart: "no"
+    environment:
+      PUERTO: "8080"
+      REPLICAS: "${REPLICAS:-A=http://replica-a:8080,B=http://replica-b:8080,C=http://replica-c:8080}"
+      MONITOR_T_MS: "${MONITOR_T_MS:-1000}"
+      MONITOR_TIMEOUT_MS: "${MONITOR_TIMEOUT_MS:-300}"
+      MONITOR_K: "${MONITOR_K:-2}"
+      MONITOR_M: "${MONITOR_M:-2}"
+      MONITOR_TRAZA: "${MONITOR_TRAZA:-false}"
+      ESTADO_INICIAL: "${ESTADO_INICIAL:-VIVA}"
+      CONSULTA_TIMEOUT_MS: "${CONSULTA_TIMEOUT_MS:-1500}"
+      BITACORA_ARCHIVO: "/datos/monitor.log"
+    ports:
+      - "${PUERTO_DISPATCHER:-8080}:8080"
+    volumes:
+      # La bitacora del monitor queda en ./evidencia/monitor.log del host.
+      - ./evidencia:/datos
+    depends_on:
+      - replica-a
+      - replica-b
+      - replica-c
+    networks: [recaudo]
+
+  # ---------------------------------------------------------------- FRONTEND
+  # Panel React que consume GET /estado del dispatcher desde el navegador.
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: recaudo-t/frontend:1.0
+    container_name: recaudo-frontend
+    restart: "no"
+    environment:
+      # URL vista por el NAVEGADOR del host, no por la red interna de Docker.
+      DISPATCHER_URL: "${DISPATCHER_URL_PUBLICA:-http://localhost:8080}"
+    ports:
+      - "${PUERTO_FRONTEND:-3000}:80"
+    depends_on:
+      - dispatcher
+    networks: [recaudo]
+
+  # ------------------------------------------------- CLIENTE (perfil "carga")
+  # No arranca con "docker compose up": se ejecuta a demanda por experimento.
+  cliente:
+    build:
+      context: .
+      dockerfile: deploy/cliente.Dockerfile
+    image: recaudo-t/cliente:1.0
+    profiles: ["carga"]
+    environment:
+      DISPATCHER_URL: "http://dispatcher:8080"
+      TASA_RPS: "${TASA_RPS:-20}"
+      DURACION_S: "${DURACION_S:-40}"
+      ID_TARJETA: "${ID_TARJETA:-1234}"
+      ETIQUETA: "${ETIQUETA:-E0}"
+      CSV_SALIDA: "/datos/${ARCHIVO_CSV:-cliente.csv}"
+      CLIENTE_TIMEOUT_MS: "${CLIENTE_TIMEOUT_MS:-2000}"
+    volumes:
+      - ./evidencia:/datos
+    depends_on:
+      - dispatcher
+    networks: [recaudo]
+
+  # ------------------------------------------------- INYECTOR (perfil "caos")
+  # Registra su timestamp y mata el contenedor objetivo con "docker kill".
+  # Necesita el socket del demonio Docker montado.
+  inyector:
+    build:
+      context: .
+      dockerfile: deploy/inyector.Dockerfile
+    image: recaudo-t/inyector:1.0
+    profiles: ["caos"]
+    environment:
+      MODO: "${MODO_INYECTOR:-docker}"
+      COMANDO_DOCKER: "${COMANDO_DOCKER:-kill}"
+      INYECTOR_LOG: "/datos/inyector.log"
+      OBJETIVO: "${OBJETIVO:-recaudo-replica-b}"
+    volumes:
+      - ./evidencia:/datos
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks: [recaudo]
+
+  # ----------------------------------------------- METRICAS (perfil "reporte")
+  # Calcula la tabla de resultados a partir de la evidencia recolectada.
+  metricas:
+    build:
+      context: .
+      dockerfile: deploy/metricas.Dockerfile
+    image: recaudo-t/metricas:1.0
+    profiles: ["reporte"]
+    volumes:
+      - ./evidencia:/datos
+    networks: [recaudo]
+
+networks:
+  recaudo:
+    driver: bridge
