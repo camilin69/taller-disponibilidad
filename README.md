@@ -47,6 +47,15 @@ curl http://localhost:8080/saldo/1234
 
 Para detener todo: `docker compose down`.
 
+> **¿Puertos ocupados?** Todos los puertos publicados son variables de `.env`.
+> Por ejemplo, para correr el sistema en 9080/9081-9083/9300:
+>
+> ```bash
+> PUERTO_DISPATCHER=9080 PUERTO_REPLICA_A=9081 PUERTO_REPLICA_B=9082 > PUERTO_REPLICA_C=9083 PUERTO_FRONTEND=9300 > DISPATCHER_URL_PUBLICA=http://localhost:9080 docker compose up -d
+> ```
+>
+> Los scripts de experimentos respetan `DISPATCHER_URL_PUBLICA`.
+
 ---
 
 ## 2. Ejecutar los experimentos
