@@ -4,3 +4,6 @@
 [2026-09-08T04:07:37.375Z] REPLICA_B CAIDA -> VIVA (2 exitos consecutivos de ping)
 [2026-09-08T04:08:17.671Z] REPLICA_B VIVA -> CAIDA (2 fallos consecutivos de ping)
 [2026-09-08T04:08:34.369Z] REPLICA_B CAIDA -> VIVA (2 exitos consecutivos de ping)
+[2026-09-08T11:55:46.720Z] REPLICA_A VIVA -> CAIDA (2 fallos consecutivos de ping)
+[2026-09-08T11:55:46.720Z] REPLICA_B VIVA -> CAIDA (2 fallos consecutivos de ping)
+[2026-09-08T11:55:46.721Z] REPLICA_C VIVA -> CAIDA (2 fallos consecutivos de ping)

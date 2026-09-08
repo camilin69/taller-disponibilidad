@@ -24,16 +24,20 @@ type Dispatcher struct {
 	EstadoInicial   domain.Estado
 	TimeoutConsulta time.Duration // tiempo maximo de la carrera de redundancia
 	ArchivoBitacora string
-	TrazaSondeos    bool // imprime cada ping en stdout (modo depuracion)
+	TrazaSondeos    bool // imprime cada ping enviado (modo depuracion)
+	LogPeticiones   bool // deja una linea por consulta atendida
+	LogVigilancia   bool // incluye el trafico periodico (sondeos y panel)
 }
 
 // Replica agrupa la configuracion de un proceso replica.
 type Replica struct {
-	ID          string
-	Puerto      int
-	LatenciaMin time.Duration // latencia artificial minima de /saldo
-	LatenciaMax time.Duration // latencia artificial maxima de /saldo
-	SaldoBase   int64
+	ID            string
+	Puerto        int
+	LatenciaMin   time.Duration // latencia artificial minima de /saldo
+	LatenciaMax   time.Duration // latencia artificial maxima de /saldo
+	SaldoBase     int64
+	LogPeticiones bool // deja una linea por peticion atendida
+	LogVigilancia bool // incluye el trafico periodico (sondeos y panel)
 }
 
 // Cliente agrupa la configuracion del generador de carga.
@@ -68,6 +72,8 @@ func CargarDispatcher() (Dispatcher, error) {
 		TimeoutConsulta: duracionMS("CONSULTA_TIMEOUT_MS", 1500),
 		ArchivoBitacora: texto("BITACORA_ARCHIVO", "/datos/monitor.log"),
 		TrazaSondeos:    booleano("MONITOR_TRAZA", false),
+		LogPeticiones:   booleano("LOG_PETICIONES", true),
+		LogVigilancia:   booleano("LOG_VIGILANCIA", false),
 	}
 
 	estado, err := domain.ParsearEstado(texto("ESTADO_INICIAL", string(domain.EstadoViva)))
@@ -170,11 +176,13 @@ func idDesdeURL(url string) string {
 // CargarReplica lee la configuracion de un proceso replica.
 func CargarReplica() (Replica, error) {
 	cfg := Replica{
-		ID:          strings.ToUpper(texto("REPLICA_ID", "")),
-		Puerto:      entero("PUERTO", 8080),
-		LatenciaMin: duracionMS("LATENCIA_MIN_MS", 2),
-		LatenciaMax: duracionMS("LATENCIA_MAX_MS", 25),
-		SaldoBase:   int64(entero("SALDO_BASE", 15000)),
+		ID:            strings.ToUpper(texto("REPLICA_ID", "")),
+		Puerto:        entero("PUERTO", 8080),
+		LatenciaMin:   duracionMS("LATENCIA_MIN_MS", 2),
+		LatenciaMax:   duracionMS("LATENCIA_MAX_MS", 25),
+		SaldoBase:     int64(entero("SALDO_BASE", 15000)),
+		LogPeticiones: booleano("LOG_PETICIONES", true),
+		LogVigilancia: booleano("LOG_VIGILANCIA", false),
 	}
 	if cfg.ID == "" {
 		return Replica{}, fmt.Errorf("REPLICA_ID es obligatoria")

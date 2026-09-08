@@ -121,6 +121,35 @@ tiempo de detección (bitácora − inyector) y el % de solicitudes exitosas.
 También se puede provocar el crash sin Docker, usando el gancho de caos de la
 réplica: `curl -X POST http://localhost:8082/chaos/crash`.
 
+### Ver el tráfico en los logs
+
+Cada servicio deja una línea por consulta atendida, así que `docker compose logs`
+muestra la redundancia activa en vivo:
+
+```bash
+docker compose logs -f dispatcher replica-a replica-b replica-c
+```
+
+```
+recaudo-dispatcher | peticion GET /saldo/1234 -> 200 replica=A 8.0 ms 110 B cliente=172.19.0.1
+recaudo-replica-a  | peticion GET /saldo/1234 -> 200 6.4 ms 53 B cliente=172.19.0.5
+recaudo-replica-b  | peticion GET /saldo/1234 -> cancelada (descartada por la redundancia) 7.0 ms 0 B
+recaudo-replica-c  | peticion GET /saldo/1234 -> cancelada (descartada por la redundancia) 7.4 ms 0 B
+```
+
+Una sola consulta llega a **las tres réplicas** (fan-out), gana la más rápida
+(`replica=A` en el dispatcher) y las otras dos quedan canceladas: eso es
+exactamente la táctica de redundancia activa.
+
+| Variable | Defecto | Efecto |
+|---|---|---|
+| `LOG_PETICIONES` | `true` | Una línea por consulta de negocio (`/saldo`, `/chaos/crash`) |
+| `LOG_VIGILANCIA` | `false` | Añade el tráfico periódico: `/ping`, `/salud` y el refresco del panel (`/estado`, `/estado/detalle`, `/bitacora`, `/metricas`) |
+| `MONITOR_TRAZA` | `false` | En el dispatcher, imprime cada ping **enviado** por el monitor |
+
+Para las corridas de carga conviene apagarlas (`LOG_PETICIONES=false`): a 20 req/s
+son 800 líneas por corrida que estorban al leer la bitácora del monitor.
+
 ---
 
 ## 3. Ejecutar las pruebas
@@ -190,7 +219,9 @@ Todos los parámetros viven en `.env`; **ninguno está fijo en el código**.
 | `ESTADO_INICIAL` | `VIVA` | Estado con el que arrancan las réplicas |
 | `CONSULTA_TIMEOUT_MS` | `1500` | Tiempo máximo de la carrera entre réplicas |
 | `BITACORA_ARCHIVO` | `/datos/monitor.log` | Archivo de bitácora (volumen `./evidencia`) |
-| `MONITOR_TRAZA` | `false` | `true` imprime cada ping (depuración) |
+| `MONITOR_TRAZA` | `false` | `true` imprime cada ping enviado (depuración) |
+| `LOG_PETICIONES` | `true` | Una línea por consulta atendida |
+| `LOG_VIGILANCIA` | `false` | Incluye en esa traza el tráfico periódico (sondeos y panel) |
 
 ### Réplica
 
@@ -200,6 +231,7 @@ Todos los parámetros viven en `.env`; **ninguno está fijo en el código**.
 | `PUERTO` | `8080` | Puerto interno |
 | `LATENCIA_MIN_MS` / `LATENCIA_MAX_MS` | `2` / `25` | Latencia artificial de `/saldo`, para que ninguna réplica gane siempre |
 | `SALDO_BASE` | `15000` | Base del saldo determinista por tarjeta |
+| `LOG_PETICIONES` / `LOG_VIGILANCIA` | `true` / `false` | Traza de peticiones atendidas por la réplica |
 
 ### Cliente e inyector
 

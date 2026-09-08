@@ -25,6 +25,7 @@ func main() {
 	log.SetPrefix("[replica " + cfg.ID + "] ")
 
 	api := httpin.NuevaReplica(cfg.ID, cfg.SaldoBase, cfg.LatenciaMin, cfg.LatenciaMax)
+	api.Registro = httpin.OpcionesRegistro{Activo: cfg.LogPeticiones, IncluirVigilancia: cfg.LogVigilancia}
 	// En produccion el gancho de caos si termina el proceso.
 	api.Salir = func(codigo int) {
 		log.Printf("terminando el proceso por orden del inyector (codigo %d)", codigo)
@@ -35,6 +36,7 @@ func main() {
 	defer detener()
 
 	log.Printf("saldo base=%d latencia simulada=[%v, %v]", cfg.SaldoBase, cfg.LatenciaMin, cfg.LatenciaMax)
+	log.Printf("traza de peticiones=%v (trafico de vigilancia incluido=%v)", cfg.LogPeticiones, cfg.LogVigilancia)
 	if err := servidor.Ejecutar(ctx, servidor.Opciones{
 		Nombre:  "replica-" + cfg.ID,
 		Puerto:  cfg.Puerto,

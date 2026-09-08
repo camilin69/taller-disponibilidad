@@ -45,6 +45,10 @@ type Dispatcher struct {
 	registro *usecase.RegistroReplicas
 	bitacora usecase.Bitacora
 	config   ConfigExpuesta
+
+	// Registro controla la traza de peticiones atendidas. Lo fija la capa de
+	// infraestructura a partir de LOG_PETICIONES.
+	Registro OpcionesRegistro
 }
 
 // NuevoDispatcher arma el adaptador con sus dependencias ya construidas.
@@ -62,7 +66,9 @@ func (d *Dispatcher) Rutas() http.Handler {
 	mux.HandleFunc("/bitacora", d.manejarBitacora)
 	mux.HandleFunc("/metricas", d.manejarMetricas)
 	mux.HandleFunc("/salud", d.manejarSalud)
-	return ConCORS(mux)
+	// El registro va por fuera de CORS para que tambien queden trazadas las
+	// peticiones de verificacion previa (OPTIONS) del panel React.
+	return ConRegistroPeticiones(ConCORS(mux), d.Registro)
 }
 
 // manejarSaldo atiende la consulta del cliente con redundancia activa (R2).

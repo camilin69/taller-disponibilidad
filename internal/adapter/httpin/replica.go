@@ -22,6 +22,9 @@ type Replica struct {
 	// endpoint sin terminar el proceso de pruebas.
 	Salir func(codigo int)
 
+	// Registro controla la traza de peticiones atendidas por la replica.
+	Registro OpcionesRegistro
+
 	pings     atomic.Int64
 	consultas atomic.Int64
 }
@@ -44,7 +47,7 @@ func (rep *Replica) Rutas() http.Handler {
 	mux.HandleFunc("/saldo/", rep.manejarSaldo)
 	mux.HandleFunc("/chaos/crash", rep.manejarCrash)
 	mux.HandleFunc("/salud", rep.manejarSalud)
-	return ConCORS(mux)
+	return ConRegistroPeticiones(ConCORS(mux), rep.Registro)
 }
 
 // manejarPing es el ECO del Ping/Echo: 200 con el identificador de la replica.

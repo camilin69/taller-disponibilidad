@@ -41,6 +41,7 @@ func main() {
 	log.Printf("monitor Ping/Echo: T=%v t=%v k=%d m=%d (deteccion esperada ~%v)",
 		cfg.IntervaloSondeo, cfg.TimeoutSondeo, cfg.K, cfg.M, cfg.DeteccionEsperada())
 	log.Printf("bitacora: %s", cfg.ArchivoBitacora)
+	log.Printf("traza de peticiones=%v (trafico de vigilancia incluido=%v)", cfg.LogPeticiones, cfg.LogVigilancia)
 
 	// El monitor corre en segundo plano: atender consultas nunca espera un ciclo
 	// de sondeo, ni el sondeo se detiene mientras se atienden consultas.

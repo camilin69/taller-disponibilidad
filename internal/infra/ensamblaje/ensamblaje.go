@@ -62,6 +62,7 @@ func ArmarDispatcher(cfg config.Dispatcher) (*Sistema, error) {
 		TimeoutConsultaMS:   cfg.TimeoutConsulta.Milliseconds(),
 		DeteccionEsperadaMS: cfg.DeteccionEsperada().Milliseconds(),
 	})
+	api.Registro = httpin.OpcionesRegistro{Activo: cfg.LogPeticiones, IncluirVigilancia: cfg.LogVigilancia}
 
 	return &Sistema{
 		Config:   cfg,

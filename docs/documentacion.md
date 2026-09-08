@@ -297,7 +297,37 @@ y estado.
 ./scripts/pruebas.sh -race          # con detector de carreras
 ```
 
-### 5.7 Detener y limpiar
+### 5.7 Ver el tráfico en los logs de los contenedores
+
+Cada servicio deja una línea por consulta atendida:
+
+```bash
+docker compose logs -f dispatcher replica-a replica-b replica-c
+```
+
+```
+recaudo-dispatcher | peticion GET /saldo/1234 -> 200 replica=A 8.0 ms 110 B cliente=172.19.0.1
+recaudo-replica-a  | peticion GET /saldo/1234 -> 200 6.4 ms 53 B cliente=172.19.0.5
+recaudo-replica-b  | peticion GET /saldo/1234 -> cancelada (descartada por la redundancia) 7.0 ms 0 B
+recaudo-replica-c  | peticion GET /saldo/1234 -> cancelada (descartada por la redundancia) 7.4 ms 0 B
+```
+
+La traza hace visible la táctica R2 sin necesidad de leer el CSV: una única
+consulta del cliente llega a **las tres réplicas**, el dispatcher informa cuál
+ganó la carrera (`replica=A`) y las otras dos aparecen como canceladas, porque
+el `context` compartido las abortó en cuanto hubo una respuesta válida.
+
+El tráfico periódico —los sondeos `/ping` del monitor y el refresco del panel
+React— **no se traza por omisión**: son varias líneas por segundo que taparían
+las consultas de negocio. Se activa con `LOG_VIGILANCIA=true`, y `MONITOR_TRAZA=true`
+agrega además el ping **enviado** por el monitor, con su latencia y su error.
+
+Para las corridas experimentales conviene apagar la traza
+(`LOG_PETICIONES=false`): a 20 req/s son 800 líneas por corrida. La evidencia
+formal del experimento no sale de estos logs sino del CSV del cliente y de la
+bitácora del monitor.
+
+### 5.8 Detener y limpiar
 
 ```bash
 docker compose down                 # detiene y elimina los contenedores
@@ -317,7 +347,9 @@ entorno en `internal/infra/config` y están declarados en `.env`.
 | `MONITOR_TIMEOUT_MS` | `300` | dispatcher | **t**: espera máxima del eco (validado: debe ser < T) |
 | `MONITOR_K` | `2` | dispatcher | **k**: fallos consecutivos para marcar CAÍDA |
 | `MONITOR_M` | `2` | dispatcher | **m**: éxitos consecutivos para volver a VIVA |
-| `MONITOR_TRAZA` | `false` | dispatcher | Traza cada ping en stdout (depuración) |
+| `MONITOR_TRAZA` | `false` | dispatcher | Traza cada ping enviado por el monitor (depuración) |
+| `LOG_PETICIONES` | `true` | dispatcher y réplicas | Una línea por consulta atendida, con la réplica ganadora |
+| `LOG_VIGILANCIA` | `false` | dispatcher y réplicas | Incluye en la traza el tráfico periódico (`/ping`, `/salud`, `/estado`, `/bitacora`, `/metricas`) |
 | `ESTADO_INICIAL` | `VIVA` | dispatcher | Estado inicial de las réplicas |
 | `REPLICAS` | `A=http://replica-a:8080,B=...` | dispatcher | Lista de réplicas (agregar una es editar esta variable) |
 | `CONSULTA_TIMEOUT_MS` | `1500` | dispatcher | Tiempo máximo de la carrera de redundancia |
@@ -541,14 +573,14 @@ Resultado de la corrida de referencia con detector de carreras
 (`go vet ./... && go test -race ./... -count=1`):
 
 ```
-ok  github.com/camilin69/taller-disponibilidad/internal/adapter/bitacora   1.556s
-ok  github.com/camilin69/taller-disponibilidad/internal/adapter/gateway    1.791s
-ok  github.com/camilin69/taller-disponibilidad/internal/adapter/httpin     1.457s
-ok  github.com/camilin69/taller-disponibilidad/internal/domain             1.257s
-ok  github.com/camilin69/taller-disponibilidad/internal/infra/config       1.384s
-ok  github.com/camilin69/taller-disponibilidad/internal/metricas           1.341s
-ok  github.com/camilin69/taller-disponibilidad/internal/usecase            2.063s
-ok  github.com/camilin69/taller-disponibilidad/tests/integracion          14.009s
+ok  github.com/camilin69/taller-disponibilidad/internal/adapter/bitacora   1.796s
+ok  github.com/camilin69/taller-disponibilidad/internal/adapter/gateway    4.818s
+ok  github.com/camilin69/taller-disponibilidad/internal/adapter/httpin     3.506s
+ok  github.com/camilin69/taller-disponibilidad/internal/domain             2.219s
+ok  github.com/camilin69/taller-disponibilidad/internal/infra/config       2.010s
+ok  github.com/camilin69/taller-disponibilidad/internal/metricas           2.419s
+ok  github.com/camilin69/taller-disponibilidad/internal/usecase            2.989s
+ok  github.com/camilin69/taller-disponibilidad/tests/integracion          15.274s
 ```
 
 ### 9.2 Pruebas unitarias (lógica de negocio)
@@ -578,6 +610,7 @@ ok  github.com/camilin69/taller-disponibilidad/tests/integracion          14.009
 | `TestPasarela*` (gateway) | Solo un 200 con cuerpo válido cuenta como respuesta de una réplica |
 | `TestDispatcher*` (handlers) | Contrato de `/estado`, 503 sin réplicas VIVA, validación del id de tarjeta, CORS |
 | `TestReplicaSaldoEsDeterministaEntreReplicas` | Todas las réplicas devuelven el mismo saldo para la misma tarjeta |
+| `TestRegistro*` (traza) | La traza deja una línea por consulta con la réplica ganadora, respeta el código de error, omite el tráfico periódico, conserva el `http.Flusher` del gancho de caos y marca como *cancelada* la petición que pierde la carrera |
 
 ### 9.3 Pruebas de integración (sistema completo)
 

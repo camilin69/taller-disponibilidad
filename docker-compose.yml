@@ -26,6 +26,8 @@ services:
       LATENCIA_MIN_MS: "${LATENCIA_MIN_MS:-2}"
       LATENCIA_MAX_MS: "${LATENCIA_MAX_MS:-25}"
       SALDO_BASE: "${SALDO_BASE:-15000}"
+      LOG_PETICIONES: "${LOG_PETICIONES:-true}"
+      LOG_VIGILANCIA: "${LOG_VIGILANCIA:-false}"
     ports:
       - "${PUERTO_REPLICA_A:-8081}:8080"
     networks: [recaudo]
@@ -43,6 +45,8 @@ services:
       LATENCIA_MIN_MS: "${LATENCIA_MIN_MS:-2}"
       LATENCIA_MAX_MS: "${LATENCIA_MAX_MS:-25}"
       SALDO_BASE: "${SALDO_BASE:-15000}"
+      LOG_PETICIONES: "${LOG_PETICIONES:-true}"
+      LOG_VIGILANCIA: "${LOG_VIGILANCIA:-false}"
     ports:
       - "${PUERTO_REPLICA_B:-8082}:8080"
     networks: [recaudo]
@@ -60,6 +64,8 @@ services:
       LATENCIA_MIN_MS: "${LATENCIA_MIN_MS:-2}"
       LATENCIA_MAX_MS: "${LATENCIA_MAX_MS:-25}"
       SALDO_BASE: "${SALDO_BASE:-15000}"
+      LOG_PETICIONES: "${LOG_PETICIONES:-true}"
+      LOG_VIGILANCIA: "${LOG_VIGILANCIA:-false}"
     ports:
       - "${PUERTO_REPLICA_C:-8083}:8080"
     networks: [recaudo]
@@ -85,6 +91,8 @@ services:
       ESTADO_INICIAL: "${ESTADO_INICIAL:-VIVA}"
       CONSULTA_TIMEOUT_MS: "${CONSULTA_TIMEOUT_MS:-1500}"
       BITACORA_ARCHIVO: "/datos/monitor.log"
+      LOG_PETICIONES: "${LOG_PETICIONES:-true}"
+      LOG_VIGILANCIA: "${LOG_VIGILANCIA:-false}"
     ports:
       - "${PUERTO_DISPATCHER:-8080}:8080"
     volumes:
