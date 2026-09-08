@@ -28,3 +28,20 @@ Resumen de las corridas incluidas:
 | E1 · run1 | 800 | 100,00 % | 2,280 s |
 | E1 · run2 | 800 | 100,00 % | 1,400 s |
 | Verificación manual del panel (sin carga) | — | — | 1,494 s |
+
+## Nota sobre `monitor.log`
+
+El archivo se abre en modo *append*, así que acumula todo lo que el monitor
+detectó, incluidas las transiciones ajenas a los experimentos. Para leerlo:
+
+| Marca de tiempo | Origen |
+|---|---|
+| `04:06` – `04:08` | **Las corridas del taller.** Tres inyecciones sobre `REPLICA_B` (E1 run1, E1 run2 y la verificación del panel) con sus respectivas recuperaciones `docker start` |
+| `11:55` – `11:58` | Ruido operativo: reconstrucción de los contenedores (`docker compose up --build`) mientras se añadía la traza de peticiones. Al recrearse las réplicas, el monitor las marca CAÍDA y las devuelve a VIVA cuando vuelven a responder |
+
+Las líneas de `11:5x` no invalidan nada: son la misma táctica funcionando (el
+monitor detecta que las réplicas dejan de responder durante el reinicio). Se
+conservan porque borrar evidencia real sería peor que explicarla. Los tiempos de
+detección de la tabla anterior se calculan emparejando cada línea de
+`inyector.log` con la transición VIVA→CAÍDA correspondiente, así que ese ruido
+no entra en las métricas.
