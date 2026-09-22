@@ -17,6 +17,11 @@ Todo está escrito en **Go 1.21** (solo biblioteca estándar: `net/http`,
 goroutines, `context`) siguiendo **Clean Architecture**, con un panel en
 **React + TypeScript** y orquestación con **Docker Compose**.
 
+> **¿Busca el taller de desempeño?** Está en [`desempeno/`](desempeno/):
+> Introducir Concurrencia + caché sobre el resumen mensual de viajes. Es un
+> módulo de Go y un stack de Compose independientes, así que los dos sistemas
+> pueden correr a la vez (disponibilidad publica en 8080, desempeño en 8090).
+
 ---
 
 ## 1. Arranque en un solo comando

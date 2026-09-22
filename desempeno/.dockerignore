@@ -1,0 +1,7 @@
+.git
+evidencia
+docs
+scripts
+tests
+*.pdf
+*.md

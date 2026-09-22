@@ -1,0 +1,129 @@
+secuencia,timestamp_envio,timestamp_respuesta,exito,desde_cache,id_tarjeta,latencia_ms,codigo_http,segundo_relativo,experimento,error
+1,2026-09-22T23:33:26.698Z,2026-09-22T23:33:26.926Z,1,0,1000,228.429,200,0.125,E0,
+2,2026-09-22T23:33:26.823Z,2026-09-22T23:33:27.121Z,1,0,1001,298.002,200,0.250,E0,
+3,2026-09-22T23:33:26.948Z,2026-09-22T23:33:27.322Z,1,0,1002,374.140,200,0.375,E0,
+4,2026-09-22T23:33:27.073Z,2026-09-22T23:33:27.522Z,1,0,1003,448.899,200,0.501,E0,
+5,2026-09-22T23:33:27.198Z,2026-09-22T23:33:27.723Z,1,0,1004,524.592,200,0.626,E0,
+6,2026-09-22T23:33:27.323Z,2026-09-22T23:33:27.924Z,1,0,1005,600.752,200,0.750,E0,
+7,2026-09-22T23:33:27.448Z,2026-09-22T23:33:28.124Z,1,0,1006,675.782,200,0.876,E0,
+8,2026-09-22T23:33:27.573Z,2026-09-22T23:33:28.325Z,1,0,1007,751.684,200,1.001,E0,
+9,2026-09-22T23:33:27.698Z,2026-09-22T23:33:28.525Z,1,0,1008,827.382,200,1.125,E0,
+10,2026-09-22T23:33:27.823Z,2026-09-22T23:33:28.726Z,1,0,1009,902.541,200,1.251,E0,
+11,2026-09-22T23:33:27.948Z,2026-09-22T23:33:28.927Z,1,0,1000,978.611,200,1.376,E0,
+12,2026-09-22T23:33:28.073Z,2026-09-22T23:33:29.128Z,1,0,1001,1054.102,200,1.501,E0,
+13,2026-09-22T23:33:28.199Z,2026-09-22T23:33:29.328Z,1,0,1002,1129.489,200,1.626,E0,
+14,2026-09-22T23:33:28.323Z,2026-09-22T23:33:29.529Z,1,0,1003,1205.710,200,1.751,E0,
+15,2026-09-22T23:33:28.448Z,2026-09-22T23:33:29.729Z,1,0,1004,1281.267,200,1.875,E0,
+16,2026-09-22T23:33:28.574Z,2026-09-22T23:33:29.930Z,1,0,1005,1356.381,200,2.001,E0,
+17,2026-09-22T23:33:28.698Z,2026-09-22T23:33:30.130Z,1,0,1006,1432.338,200,2.125,E0,
+18,2026-09-22T23:33:28.823Z,2026-09-22T23:33:30.335Z,1,0,1007,1512.055,200,2.251,E0,
+19,2026-09-22T23:33:28.948Z,2026-09-22T23:33:30.536Z,1,0,1008,1588.419,200,2.375,E0,
+20,2026-09-22T23:33:29.074Z,2026-09-22T23:33:30.737Z,1,0,1009,1663.095,200,2.501,E0,
+21,2026-09-22T23:33:29.198Z,2026-09-22T23:33:30.938Z,1,0,1000,1739.810,200,2.625,E0,
+22,2026-09-22T23:33:29.323Z,2026-09-22T23:33:31.138Z,1,0,1001,1814.779,200,2.751,E0,
+23,2026-09-22T23:33:29.448Z,2026-09-22T23:33:31.339Z,1,0,1002,1890.344,200,2.876,E0,
+24,2026-09-22T23:33:29.573Z,2026-09-22T23:33:31.540Z,1,0,1003,1966.776,200,3.001,E0,
+25,2026-09-22T23:33:29.699Z,2026-09-22T23:33:31.740Z,1,0,1004,2041.290,200,3.126,E0,
+26,2026-09-22T23:33:29.824Z,2026-09-22T23:33:31.941Z,1,0,1005,2117.536,200,3.251,E0,
+27,2026-09-22T23:33:29.948Z,2026-09-22T23:33:32.142Z,1,0,1006,2193.946,200,3.376,E0,
+28,2026-09-22T23:33:30.073Z,2026-09-22T23:33:32.342Z,1,0,1007,2269.529,200,3.500,E0,
+29,2026-09-22T23:33:30.198Z,2026-09-22T23:33:32.543Z,1,0,1008,2345.678,200,3.625,E0,
+30,2026-09-22T23:33:30.323Z,2026-09-22T23:33:32.744Z,1,0,1009,2420.485,200,3.751,E0,
+31,2026-09-22T23:33:30.448Z,2026-09-22T23:33:32.945Z,1,0,1000,2496.807,200,3.875,E0,
+32,2026-09-22T23:33:30.574Z,2026-09-22T23:33:33.146Z,1,0,1001,2571.913,200,4.001,E0,
+33,2026-09-22T23:33:30.698Z,2026-09-22T23:33:33.346Z,1,0,1002,2647.971,200,4.126,E0,
+34,2026-09-22T23:33:30.823Z,2026-09-22T23:33:33.547Z,1,0,1003,2724.016,200,4.251,E0,
+35,2026-09-22T23:33:30.948Z,2026-09-22T23:33:33.747Z,1,0,1004,2799.666,200,4.375,E0,
+36,2026-09-22T23:33:31.073Z,2026-09-22T23:33:33.948Z,1,0,1005,2874.498,200,4.501,E0,
+37,2026-09-22T23:33:31.198Z,2026-09-22T23:33:34.149Z,1,0,1006,2950.699,200,4.626,E0,
+38,2026-09-22T23:33:31.323Z,2026-09-22T23:33:34.323Z,0,0,1007,3000.443,0,4.750,E0,"Get ""http://servidor:8080/resumen/1007?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+39,2026-09-22T23:33:31.448Z,2026-09-22T23:33:34.449Z,0,0,1008,3000.504,0,4.876,E0,"Get ""http://servidor:8080/resumen/1008?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+40,2026-09-22T23:33:31.574Z,2026-09-22T23:33:34.574Z,0,0,1009,3000.383,0,5.001,E0,"Get ""http://servidor:8080/resumen/1009?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+41,2026-09-22T23:33:31.698Z,2026-09-22T23:33:34.699Z,0,0,1000,3000.803,0,5.125,E0,"Get ""http://servidor:8080/resumen/1000?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+42,2026-09-22T23:33:31.824Z,2026-09-22T23:33:34.824Z,0,0,1001,3000.358,0,5.251,E0,"Get ""http://servidor:8080/resumen/1001?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+43,2026-09-22T23:33:31.949Z,2026-09-22T23:33:34.949Z,0,0,1002,3000.333,0,5.376,E0,"Get ""http://servidor:8080/resumen/1002?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+44,2026-09-22T23:33:32.073Z,2026-09-22T23:33:35.074Z,0,0,1003,3000.459,0,5.501,E0,"Get ""http://servidor:8080/resumen/1003?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+45,2026-09-22T23:33:32.199Z,2026-09-22T23:33:35.199Z,0,0,1004,3000.305,0,5.626,E0,"Get ""http://servidor:8080/resumen/1004?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+46,2026-09-22T23:33:32.323Z,2026-09-22T23:33:35.324Z,0,0,1005,3000.737,0,5.751,E0,"Get ""http://servidor:8080/resumen/1005?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+47,2026-09-22T23:33:32.448Z,2026-09-22T23:33:35.449Z,0,0,1006,3001.441,0,5.875,E0,"Get ""http://servidor:8080/resumen/1006?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+48,2026-09-22T23:33:32.573Z,2026-09-22T23:33:35.573Z,0,0,1007,3000.473,0,6.000,E0,"Get ""http://servidor:8080/resumen/1007?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+49,2026-09-22T23:33:32.698Z,2026-09-22T23:33:35.699Z,0,0,1008,3000.395,0,6.126,E0,"Get ""http://servidor:8080/resumen/1008?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+50,2026-09-22T23:33:32.823Z,2026-09-22T23:33:35.824Z,0,0,1009,3000.636,0,6.250,E0,"Get ""http://servidor:8080/resumen/1009?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+51,2026-09-22T23:33:32.948Z,2026-09-22T23:33:35.949Z,0,0,1000,3001.055,0,6.375,E0,"Get ""http://servidor:8080/resumen/1000?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+52,2026-09-22T23:33:33.073Z,2026-09-22T23:33:36.074Z,0,0,1001,3000.274,0,6.501,E0,"Get ""http://servidor:8080/resumen/1001?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+53,2026-09-22T23:33:33.198Z,2026-09-22T23:33:36.199Z,0,0,1002,3000.775,0,6.626,E0,"Get ""http://servidor:8080/resumen/1002?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+54,2026-09-22T23:33:33.324Z,2026-09-22T23:33:36.324Z,0,0,1003,3000.460,0,6.751,E0,"Get ""http://servidor:8080/resumen/1003?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+55,2026-09-22T23:33:33.448Z,2026-09-22T23:33:36.448Z,0,0,1004,3000.395,0,6.875,E0,"Get ""http://servidor:8080/resumen/1004?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+56,2026-09-22T23:33:33.573Z,2026-09-22T23:33:36.574Z,0,0,1005,3000.355,0,7.001,E0,"Get ""http://servidor:8080/resumen/1005?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+57,2026-09-22T23:33:33.698Z,2026-09-22T23:33:36.699Z,0,0,1006,3001.333,0,7.125,E0,"Get ""http://servidor:8080/resumen/1006?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+58,2026-09-22T23:33:33.830Z,2026-09-22T23:33:36.831Z,0,0,1007,3000.487,0,7.258,E0,"Get ""http://servidor:8080/resumen/1007?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+59,2026-09-22T23:33:33.948Z,2026-09-22T23:33:36.949Z,0,0,1008,3000.672,0,7.375,E0,"Get ""http://servidor:8080/resumen/1008?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+60,2026-09-22T23:33:34.073Z,2026-09-22T23:33:37.074Z,0,0,1009,3000.309,0,7.501,E0,"Get ""http://servidor:8080/resumen/1009?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+61,2026-09-22T23:33:34.198Z,2026-09-22T23:33:37.199Z,0,0,1000,3000.386,0,7.626,E0,"Get ""http://servidor:8080/resumen/1000?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+62,2026-09-22T23:33:34.323Z,2026-09-22T23:33:37.323Z,0,0,1001,3000.405,0,7.750,E0,"Get ""http://servidor:8080/resumen/1001?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+63,2026-09-22T23:33:34.448Z,2026-09-22T23:33:37.449Z,0,0,1002,3000.659,0,7.876,E0,"Get ""http://servidor:8080/resumen/1002?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+64,2026-09-22T23:33:34.574Z,2026-09-22T23:33:37.574Z,0,0,1003,3000.513,0,8.001,E0,"Get ""http://servidor:8080/resumen/1003?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+65,2026-09-22T23:33:34.698Z,2026-09-22T23:33:37.695Z,0,0,1004,3000.649,0,8.125,E0,"Get ""http://servidor:8080/resumen/1004?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+66,2026-09-22T23:33:34.823Z,2026-09-22T23:33:37.820Z,0,0,1005,3000.419,0,8.251,E0,"Get ""http://servidor:8080/resumen/1005?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+67,2026-09-22T23:33:34.948Z,2026-09-22T23:33:37.945Z,0,0,1006,3000.281,0,8.375,E0,"Get ""http://servidor:8080/resumen/1006?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+68,2026-09-22T23:33:35.073Z,2026-09-22T23:33:38.070Z,0,0,1007,3000.588,0,8.501,E0,"Get ""http://servidor:8080/resumen/1007?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+69,2026-09-22T23:33:35.198Z,2026-09-22T23:33:38.195Z,0,0,1008,3001.000,0,8.626,E0,"Get ""http://servidor:8080/resumen/1008?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+70,2026-09-22T23:33:35.324Z,2026-09-22T23:33:38.320Z,0,0,1009,3000.365,0,8.751,E0,"Get ""http://servidor:8080/resumen/1009?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+71,2026-09-22T23:33:35.449Z,2026-09-22T23:33:38.446Z,0,0,1000,3000.863,0,8.876,E0,"Get ""http://servidor:8080/resumen/1000?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+72,2026-09-22T23:33:35.573Z,2026-09-22T23:33:38.570Z,0,0,1001,3000.853,0,9.000,E0,"Get ""http://servidor:8080/resumen/1001?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+73,2026-09-22T23:33:35.698Z,2026-09-22T23:33:38.695Z,0,0,1002,3000.350,0,9.126,E0,"Get ""http://servidor:8080/resumen/1002?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+74,2026-09-22T23:33:35.823Z,2026-09-22T23:33:38.820Z,0,0,1003,3000.385,0,9.251,E0,"Get ""http://servidor:8080/resumen/1003?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+75,2026-09-22T23:33:35.949Z,2026-09-22T23:33:38.946Z,0,0,1004,3000.543,0,9.376,E0,"Get ""http://servidor:8080/resumen/1004?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+76,2026-09-22T23:33:36.073Z,2026-09-22T23:33:39.070Z,0,0,1005,3000.754,0,9.500,E0,"Get ""http://servidor:8080/resumen/1005?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+77,2026-09-22T23:33:36.199Z,2026-09-22T23:33:39.195Z,0,0,1006,3000.315,0,9.626,E0,"Get ""http://servidor:8080/resumen/1006?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+78,2026-09-22T23:33:36.324Z,2026-09-22T23:33:39.320Z,0,0,1007,3000.387,0,9.751,E0,"Get ""http://servidor:8080/resumen/1007?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+79,2026-09-22T23:33:36.448Z,2026-09-22T23:33:39.445Z,0,0,1008,3000.716,0,9.875,E0,"Get ""http://servidor:8080/resumen/1008?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+80,2026-09-22T23:33:36.574Z,2026-09-22T23:33:39.571Z,0,0,1009,3001.076,0,10.001,E0,"Get ""http://servidor:8080/resumen/1009?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+81,2026-09-22T23:33:36.699Z,2026-09-22T23:33:39.696Z,0,0,1000,3000.466,0,10.126,E0,"Get ""http://servidor:8080/resumen/1000?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+82,2026-09-22T23:33:36.824Z,2026-09-22T23:33:39.820Z,0,0,1001,3000.344,0,10.251,E0,"Get ""http://servidor:8080/resumen/1001?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+83,2026-09-22T23:33:36.948Z,2026-09-22T23:33:39.945Z,0,0,1002,3000.397,0,10.376,E0,"Get ""http://servidor:8080/resumen/1002?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+84,2026-09-22T23:33:37.073Z,2026-09-22T23:33:40.070Z,0,0,1003,3000.886,0,10.501,E0,"Get ""http://servidor:8080/resumen/1003?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+85,2026-09-22T23:33:37.198Z,2026-09-22T23:33:40.195Z,0,0,1004,3000.541,0,10.625,E0,"Get ""http://servidor:8080/resumen/1004?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+86,2026-09-22T23:33:37.323Z,2026-09-22T23:33:40.319Z,0,0,1005,3000.390,0,10.750,E0,"Get ""http://servidor:8080/resumen/1005?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+87,2026-09-22T23:33:37.449Z,2026-09-22T23:33:40.445Z,0,0,1006,3000.262,0,10.876,E0,"Get ""http://servidor:8080/resumen/1006?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+88,2026-09-22T23:33:37.574Z,2026-09-22T23:33:40.571Z,0,0,1007,3000.774,0,11.001,E0,"Get ""http://servidor:8080/resumen/1007?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+89,2026-09-22T23:33:37.694Z,2026-09-22T23:33:40.695Z,0,0,1008,3000.727,0,11.126,E0,"Get ""http://servidor:8080/resumen/1008?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+90,2026-09-22T23:33:37.819Z,2026-09-22T23:33:40.820Z,0,0,1009,3000.417,0,11.251,E0,"Get ""http://servidor:8080/resumen/1009?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+91,2026-09-22T23:33:37.944Z,2026-09-22T23:33:40.945Z,0,0,1000,3000.305,0,11.375,E0,"Get ""http://servidor:8080/resumen/1000?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+92,2026-09-22T23:33:38.070Z,2026-09-22T23:33:41.071Z,0,0,1001,3000.556,0,11.501,E0,"Get ""http://servidor:8080/resumen/1001?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+93,2026-09-22T23:33:38.195Z,2026-09-22T23:33:41.195Z,0,0,1002,3000.286,0,11.626,E0,"Get ""http://servidor:8080/resumen/1002?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+94,2026-09-22T23:33:38.319Z,2026-09-22T23:33:41.320Z,0,0,1003,3000.370,0,11.751,E0,"Get ""http://servidor:8080/resumen/1003?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+95,2026-09-22T23:33:38.444Z,2026-09-22T23:33:41.445Z,0,0,1004,3000.405,0,11.876,E0,"Get ""http://servidor:8080/resumen/1004?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+96,2026-09-22T23:33:38.570Z,2026-09-22T23:33:41.570Z,0,0,1005,3000.509,0,12.001,E0,"Get ""http://servidor:8080/resumen/1005?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+97,2026-09-22T23:33:38.694Z,2026-09-22T23:33:41.695Z,0,0,1006,3000.661,0,12.126,E0,"Get ""http://servidor:8080/resumen/1006?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+98,2026-09-22T23:33:38.819Z,2026-09-22T23:33:41.820Z,0,0,1007,3000.500,0,12.251,E0,"Get ""http://servidor:8080/resumen/1007?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+99,2026-09-22T23:33:38.944Z,2026-09-22T23:33:41.945Z,0,0,1008,3001.072,0,12.375,E0,"Get ""http://servidor:8080/resumen/1008?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+100,2026-09-22T23:33:39.070Z,2026-09-22T23:33:42.070Z,0,0,1009,3000.554,0,12.501,E0,"Get ""http://servidor:8080/resumen/1009?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+101,2026-09-22T23:33:39.195Z,2026-09-22T23:33:42.195Z,0,0,1000,3000.308,0,12.626,E0,"Get ""http://servidor:8080/resumen/1000?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+102,2026-09-22T23:33:39.320Z,2026-09-22T23:33:42.320Z,0,0,1001,3000.657,0,12.751,E0,"Get ""http://servidor:8080/resumen/1001?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+103,2026-09-22T23:33:39.445Z,2026-09-22T23:33:42.445Z,0,0,1002,3000.272,0,12.876,E0,"Get ""http://servidor:8080/resumen/1002?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+104,2026-09-22T23:33:39.569Z,2026-09-22T23:33:42.569Z,0,0,1003,3000.444,0,13.000,E0,"Get ""http://servidor:8080/resumen/1003?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+105,2026-09-22T23:33:39.694Z,2026-09-22T23:33:42.695Z,0,0,1004,3000.847,0,13.125,E0,"Get ""http://servidor:8080/resumen/1004?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+106,2026-09-22T23:33:39.819Z,2026-09-22T23:33:42.821Z,0,0,1005,3001.200,0,13.251,E0,"Get ""http://servidor:8080/resumen/1005?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+107,2026-09-22T23:33:39.944Z,2026-09-22T23:33:42.945Z,0,0,1006,3000.688,0,13.376,E0,"Get ""http://servidor:8080/resumen/1006?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+108,2026-09-22T23:33:40.070Z,2026-09-22T23:33:43.071Z,0,0,1007,3001.354,0,13.501,E0,"Get ""http://servidor:8080/resumen/1007?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+109,2026-09-22T23:33:40.194Z,2026-09-22T23:33:43.195Z,0,0,1008,3001.031,0,13.626,E0,"Get ""http://servidor:8080/resumen/1008?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+110,2026-09-22T23:33:40.319Z,2026-09-22T23:33:43.320Z,0,0,1009,3000.911,0,13.750,E0,"Get ""http://servidor:8080/resumen/1009?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+111,2026-09-22T23:33:40.445Z,2026-09-22T23:33:43.445Z,0,0,1000,3000.863,0,13.876,E0,"Get ""http://servidor:8080/resumen/1000?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+112,2026-09-22T23:33:40.570Z,2026-09-22T23:33:43.570Z,0,0,1001,3000.425,0,14.001,E0,"Get ""http://servidor:8080/resumen/1001?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+113,2026-09-22T23:33:40.695Z,2026-09-22T23:33:43.696Z,0,0,1002,3000.717,0,14.126,E0,"Get ""http://servidor:8080/resumen/1002?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+114,2026-09-22T23:33:40.820Z,2026-09-22T23:33:43.821Z,0,0,1003,3001.504,0,14.251,E0,"Get ""http://servidor:8080/resumen/1003?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+115,2026-09-22T23:33:40.944Z,2026-09-22T23:33:43.945Z,0,0,1004,3001.433,0,14.375,E0,"Get ""http://servidor:8080/resumen/1004?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+116,2026-09-22T23:33:41.069Z,2026-09-22T23:33:44.070Z,0,0,1005,3001.195,0,14.500,E0,"Get ""http://servidor:8080/resumen/1005?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+117,2026-09-22T23:33:41.194Z,2026-09-22T23:33:44.195Z,0,0,1006,3000.649,0,14.625,E0,"Get ""http://servidor:8080/resumen/1006?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+118,2026-09-22T23:33:41.319Z,2026-09-22T23:33:44.320Z,0,0,1007,3001.148,0,14.750,E0,"Get ""http://servidor:8080/resumen/1007?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+119,2026-09-22T23:33:41.444Z,2026-09-22T23:33:44.446Z,0,0,1008,3001.420,0,14.876,E0,"Get ""http://servidor:8080/resumen/1008?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+120,2026-09-22T23:33:41.569Z,2026-09-22T23:33:44.570Z,0,0,1009,3001.154,0,15.000,E0,"Get ""http://servidor:8080/resumen/1009?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+121,2026-09-22T23:33:41.695Z,2026-09-22T23:33:44.696Z,0,0,1000,3001.147,0,15.126,E0,"Get ""http://servidor:8080/resumen/1000?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+122,2026-09-22T23:33:41.820Z,2026-09-22T23:33:44.821Z,0,0,1001,3000.665,0,15.251,E0,"Get ""http://servidor:8080/resumen/1001?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+123,2026-09-22T23:33:41.945Z,2026-09-22T23:33:44.946Z,0,0,1002,3001.080,0,15.376,E0,"Get ""http://servidor:8080/resumen/1002?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+124,2026-09-22T23:33:42.070Z,2026-09-22T23:33:45.071Z,0,0,1003,3000.852,0,15.501,E0,"Get ""http://servidor:8080/resumen/1003?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+125,2026-09-22T23:33:42.195Z,2026-09-22T23:33:45.195Z,0,0,1004,3000.710,0,15.626,E0,"Get ""http://servidor:8080/resumen/1004?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+126,2026-09-22T23:33:42.319Z,2026-09-22T23:33:45.320Z,0,0,1005,3000.504,0,15.751,E0,"Get ""http://servidor:8080/resumen/1005?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+127,2026-09-22T23:33:42.444Z,2026-09-22T23:33:45.445Z,0,0,1006,3001.110,0,15.876,E0,"Get ""http://servidor:8080/resumen/1006?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+128,2026-09-22T23:33:42.569Z,2026-09-22T23:33:45.570Z,0,0,1007,3000.814,0,16.000,E0,"Get ""http://servidor:8080/resumen/1007?viajes=40"": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
