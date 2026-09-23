@@ -1,19 +1,5 @@
-# Dependencias y artefactos de construccion del frontend
-frontend/node_modules/
-frontend/dist/
-
-# Binarios compilados de Go
-/dispatcher
-/replica
-/cliente
-/inyector
-/metricas
-*.exe
-
-# Archivos temporales del sistema
+# Archivos temporales del sistema operativo.
+# Cada proyecto (disponibilidad/, desempeno/) tiene ademas su propio
+# .gitignore con lo especifico de su build (binarios, node_modules, etc.).
 .DS_Store
 Thumbs.db
-
-# NOTA: la carpeta evidencia/ SI se versiona: contiene la evidencia
-# experimental exigida por el taller (CSV del cliente, bitacora del monitor
-# y log del inyector).
