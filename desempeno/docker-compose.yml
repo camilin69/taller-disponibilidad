@@ -1,0 +1,84 @@
+# Sistema RECAUDO-T · resumen mensual con tacticas de desempeno.
+#
+#   docker compose up --build                             -> levanta el servidor
+#   docker compose --profile carga run --rm cliente       -> dispara la rafaga (E0/E1/E2)
+#   docker compose --profile reporte run --rm metricas    -> calcula la tabla
+#
+# Todos los parametros del taller (W, capacidad de la cola, cache activo, costo
+# del calculo, tasa y duracion de la rafaga) se configuran en el archivo .env.
+# Cambiar de experimento es cambiar variables y recrear el servidor; el codigo
+# es el mismo en E0, E1 y E2.
+name: recaudo-t-desempeno
+
+services:
+  # ---------------------------------------------------------------- SERVIDOR
+  # Unico proceso, como pide el enunciado. Dentro corre el pool de W
+  # trabajadores (R1) y el cache en memoria (R2).
+  #
+  # "restart: no" es deliberado: si el servidor se reinicia solo, el cache se
+  # vacia en medio de un experimento y las mediciones dejan de ser comparables.
+  servidor:
+    build:
+      context: .
+      dockerfile: deploy/servidor.Dockerfile
+    image: recaudo-t/servidor-resumen:1.0
+    container_name: recaudo-servidor
+    restart: "no"
+    environment:
+      PUERTO: "8080"
+      # --- R1: Introducir Concurrencia ---
+      TRABAJADORES: "${TRABAJADORES:-1}"
+      COLA_MAX: "${COLA_MAX:-256}"
+      # --- R2: Mantener Multiples Copias de Datos ---
+      CACHE_ACTIVA: "${CACHE_ACTIVA:-false}"
+      # --- costo del calculo ---
+      COSTO_CALCULO_MS: "${COSTO_CALCULO_MS:-200}"
+      VIAJES_POR_DEFECTO: "${VIAJES_POR_DEFECTO:-40}"
+      # --- trazas ---
+      LOG_PETICIONES: "${LOG_PETICIONES:-true}"
+      LOG_VIGILANCIA: "${LOG_VIGILANCIA:-false}"
+    ports:
+      - "${PUERTO_SERVIDOR:-8090}:8080"
+    networks: [recaudo]
+
+  # ------------------------------------------------- CLIENTE (perfil "carga")
+  # No arranca con "docker compose up": se ejecuta a demanda por experimento.
+  cliente:
+    build:
+      context: .
+      dockerfile: deploy/cliente.Dockerfile
+    image: recaudo-t/cliente-rafaga:1.0
+    profiles: ["carga"]
+    environment:
+      SERVIDOR_URL: "http://servidor:8080"
+      TASA_RPS: "${TASA_RPS:-8}"
+      DURACION_S: "${DURACION_S:-16}"
+      NUM_TARJETAS: "${NUM_TARJETAS:-10}"
+      TARJETA_BASE: "${TARJETA_BASE:-1000}"
+      VIAJES: "${VIAJES:-40}"
+      ETIQUETA: "${ETIQUETA:-E0}"
+      CSV_SALIDA: "/datos/${ARCHIVO_CSV:-cliente.csv}"
+      # 3 s: mas alla de este limite la solicitud cuenta como evento no
+      # procesado, el umbral que sugiere el enunciado.
+      CLIENTE_TIMEOUT_MS: "${CLIENTE_TIMEOUT_MS:-3000}"
+    volumes:
+      - ./evidencia:/datos
+    depends_on:
+      - servidor
+    networks: [recaudo]
+
+  # ----------------------------------------------- METRICAS (perfil "reporte")
+  # Calcula la tabla de resultados a partir de los CSV recolectados.
+  metricas:
+    build:
+      context: .
+      dockerfile: deploy/metricas.Dockerfile
+    image: recaudo-t/metricas-desempeno:1.0
+    profiles: ["reporte"]
+    volumes:
+      - ./evidencia:/datos
+    networks: [recaudo]
+
+networks:
+  recaudo:
+    driver: bridge

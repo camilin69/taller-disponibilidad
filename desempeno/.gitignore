@@ -1,0 +1,12 @@
+# Binarios compilados de Go
+/servidor
+/cliente
+/metricas
+*.exe
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# NOTA: la carpeta evidencia/ SI se versiona: contiene la evidencia
+# experimental exigida por el taller (CSV del cliente y tabla de resultados).
